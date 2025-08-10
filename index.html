@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Vault360 – Clickable Wireframe (Phase 1)</title>
+<style>
+  :root{
+    --bg:#f6f7fb; --card:#fff; --text:#111; --muted:#6b7280; --line:#e5e7eb; --accent:#111;
+    --pill:#f3f4f6;
+  }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif;color:var(--text)}
+  .wrap{max-width:1100px;margin-inline:auto;min-height:100vh;display:flex;flex-direction:column}
+  header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line)}
+  header .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;gap:12px}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo-badge{width:32px;height:32px;border-radius:8px;background:var(--accent)}
+  .tabs{display:grid;gap:16px;padding:16px}
+  .grid{display:grid;gap:16px}
+  @media(min-width:860px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+  .card h3{margin:0 0 8px 0;font-size:15px}
+  .muted{color:var(--muted);font-size:14px}
+  .pill{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--pill);border-radius:999px;padding:4px 8px;font-size:12px;margin-right:6px;margin-top:4px}
+  .bar{height:8px;border-radius:999px;background:#e5e7eb;overflow:hidden}
+  .bar > span{display:block;height:100%;background:var(--accent);width:0%}
+  .btn{appearance:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:14px;cursor:pointer}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  nav{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line)}
+  .navgrid{display:grid;grid-template-columns:repeat(8,1fr)}
+  .navbtn{padding:12px 6px;text-align:center;font-size:12px;color:#555;border-right:1px solid #f3f4f6}
+  .navbtn.active{color:#000;font-weight:600;background:#fafafa}
+  .hidden{display:none}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .small{font-size:12px}
+  .list{margin:0;padding-left:18px}
+  .list li{margin:4px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="inner">
+      <div class="logo">
+        <div class="logo-badge"></div>
+        <div>
+          <div style="font-weight:600">Vault360 – Wireframe</div>
+          <div class="small muted">Phase 1 · Hub (VaultWallet later)</div>
+        </div>
+      </div>
+      <div class="row small">
+        <span class="muted">Phase</span>
+        <button class="btn" id="phase1Btn">1 · Hub</button>
+        <button class="btn" id="phase2Btn">2 · VaultWallet</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="content" class="tabs">
+
+    <!-- HOME -->
+    <section id="homeTab">
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Quick Upload</h3>
+          <div class="muted">Drag & drop or <u>browse files</u> to add photos, docs, or video.</div>
+        </div>
+        <div class="card">
+          <h3>Storage Usage</h3>
+          <div class="row small"><span>72 GB / 100 GB</span><span class="pill">Plan: Starter</span></div>
+          <div class="bar" aria-label="usage"><span style="width:72%"></span></div>
+        </div>
+        <div class="card">
+          <h3>Spotlight</h3>
+          <div class="muted">Archive your moments. Share the wins.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VAULT -->
+    <section id="vaultTab" class="hidden">
+      <div class="grid cols-3">
+        <div class="card"><h3>Smart Folders</h3><div class="pill">Documents</div><div class="pill">Photos</div><div class="pill">Live Replays</div><div class="pill">Contracts</div></div>
+        <div class="card"><h3>Search & Tags</h3><div class="muted">Find by name, tag, season, or person.</div></div>
+        <div class="card"><h3>Bulk Actions</h3><div class="muted">Share · Download · Move · Delete · Add Tag</div></div>
+      </div>
+      <div class="card"><h3>Demo Only</h3><div class="muted small">This is a wireframe. In the real app, files appear here from Supabase Storage.</div></div>
+    </section>
+
+    <!-- FUNDING -->
+    <section id="fundingTab" class="hidden">
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Vault360 Funding Pool</h3>
+          <div class="row small"><span>£12,960 raised · August</span><span class="pill">Goal £20,000</span></div>
+          <div class="bar"><span style="width:65%"></span></div>
+          <div style="margin-top:8px">
+            <div class="small muted" style="text-transform:uppercase;letter-spacing:.05em;font-weight:600">Where it’s going</div>
+            <ul class="list small"><li>Youth kits & boots</li><li>Community fees</li><li>Hardship support</li></ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Global Pool Snapshot</h3>
+          <div class="row small"><span id="scopeLabel">All Vault360 Apps</span><span class="pill">Live</span></div>
+          <div class="bar"><span id="globalBar" style="width:56%"></span></div>
+          <div class="muted small" id="scopeHint" style="margin-top:6px">Combined impact across Nurses, Rugby, Pets, and more.</div>
+          <div style="margin-top:10px" class="row">
+            <button class="btn" id="toggleScopeBtn">Show My VaultLinks (3)</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="myLinks" class="grid cols-3 hidden" style="margin-top:8px">
+        <div class="card">
+          <h3>Vault360 (Core)</h3>
+          <div class="row small"><span>£6,840 · Aug</span><span class="pill">Goal £10,000</span></div>
+          <div class="bar"><span style="width:68%"></span></div>
+          <div class="small"><a href="#" onclick="alert('Details (demo)')">View details</a></div>
+        </div>
+        <div class="card">
+          <h3>RugbyVault360</h3>
+          <div class="row small"><span>£12,960 · Aug</span><span class="pill">Goal £20,000</span></div>
+          <div class="bar"><span style="width:65%"></span></div>
+          <div class="small"><a href="#" onclick="alert('Details (demo)')">View details</a></div>
+        </div>
+        <div class="card">
+          <h3>PetVault360</h3>
+          <div class="row small"><span>£2,150 · Aug</span><span class="pill">Goal £5,000</span></div>
+          <div class="bar"><span style="width:43%"></span></div>
+          <div class="small"><a href="#" onclick="alert('Details (demo)')">View details</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTICEBOARD -->
+    <section id="noticeTab" class="hidden">
+      <div class="grid cols-2">
+        <div class="card"><h3>Grants · Open</h3><div class="muted">Mini-grants for travel, kit, and pitch rentals. <u>Details</u></div></div>
+        <div class="card"><h3>Academy Highlights</h3><div class="muted">75 youth players uploaded showreels this week. <u>Watch</u></div></div>
+        <div class="card"><h3>Community Night</h3><div class="muted">Meet-and-greet with veterans & coaches · Friday 19:00.</div></div>
+        <div class="card"><h3>Season Archive Drive</h3><div class="muted">Help 10 clubs digitise their history this month.</div></div>
+      </div>
+    </section>
+
+    <!-- LINKED VAULTS -->
+    <section id="linkedTab" class="hidden">
+      <div class="card">
+        <h3>Switch Apps Instantly</h3>
+        <div class="grid cols-3">
+          <button class="btn">Vault360 (Core)</button>
+          <button class="btn">NursesVault360</button>
+          <button class="btn">PetVault360</button>
+          <button class="btn">UniVault360</button>
+          <button class="btn">HeroesVault360</button>
+          <button class="btn">RugbyVault360</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HUB / VAULTWALLET -->
+    <section id="hubTab" class="hidden">
+      <div class="grid cols-3">
+        <div class="card">
+          <h3 id="hubTitle">Your Plan</h3>
+          <div id="hubBody">
+            <div class="row small"><span>Starter · 100 GB</span><button class="btn small">Upgrade</button></div>
+            <div class="bar" style="margin-top:6px"><span style="width:72%"></span></div>
+            <div class="muted small" style="margin-top:6px">Receipts auto-save to your Vault.</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Funding Pool (Mini)</h3>
+          <div class="row small"><span>£12,960 · Aug</span><span class="pill">65%</span></div>
+          <div class="bar"><span style="width:65%"></span></div>
+          <div class="muted small" style="margin-top:6px">Tap to view full breakdown →</div>
+        </div>
+        <div class="card">
+          <h3>Noticeboard (Mini)</h3>
+          <ul class="list small"><li>Grants open · travel & kit</li><li>Veterans coaching night Fri</li><li>10 clubs joining this week</li></ul>
+        </div>
+      </div>
+
+      <div class="grid cols-3">
+        <div class="card"><h3>Linked Services</h3><div class="pill">Season Pass (Soon)</div><div class="pill">Day Pass (Soon)</div><div class="pill">DovuRemit (Soon)</div></div>
+        <div class="card"><h3>Recent Activity</h3><ul class="list small"><li>Upload: U18_SemiFinal.mp4</li><li>Receipt saved: PitchFees.pdf</li><li>Linked Vault360 (Core)</li></ul></div>
+        <div class="card"><h3>Security</h3><div class="muted">2FA enabled · Passkey set · Last login: 1h ago (UK)</div></div>
+      </div>
+    </section>
+
+    <!-- LIVE -->
+    <section id="liveTab" class="hidden">
+      <div class="card"><h3>Live (Coming Soon)</h3><div class="muted">Trailers and classic matches now. Season/Day Pass unlock with VaultWallet.</div></div>
+    </section>
+
+    <!-- ACCOUNT -->
+    <section id="accountTab" class="hidden">
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Security & Login</h3>
+          <div class="small muted">Face/Touch unlock uses device biometrics. We don’t store templates.</div>
+        </div>
+        <div class="card">
+          <h3>Referrals & Rewards</h3>
+          <div class="small">Refer friends from <b>Vault360</b> and earn <b>+1GB</b> each (max <b>10/month</b>). Billing unchanged for everyone.</div>
+        </div>
+        <div class="card">
+          <h3>Gift Storage (Vault360 only)</h3>
+          <ul class="list small">
+            <li>Gift in <b>5GB</b> steps, up to <b>50GB</b> per gift.</li>
+            <li><b>Sender price stays the same</b>; available pool drops (e.g., £2/200GB → gift 5GB → still £2, now 195GB).</li>
+            <li>Recipient billing unchanged; sees a “+Gift GB” bucket.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Storage Allocation</h3>
+          <div class="small muted">Distribute your total GB across Vault360, RugbyVault360, PetVault360. Gifting only from Vault360.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <nav>
+    <div class="navgrid">
+      <button class="navbtn active" data-tab="homeTab">Home</button>
+      <button class="navbtn" data-tab="vaultTab">My Vault</button>
+      <button class="navbtn" data-tab="fundingTab">Funding</button>
+      <button class="navbtn" data-tab="noticeTab">Noticeboard</button>
+      <button class="navbtn" data-tab="liveTab">Live</button>
+      <button class="navbtn" data-tab="linkedTab">Linked</button>
+      <button class="navbtn" data-tab="hubTab" id="hubNav">Hub</button>
+      <button class="navbtn" data-tab="accountTab">Account</button>
+    </div>
+  </nav>
+</div>
+
+<script>
+  // Simple tab switching
+  const buttons = Array.from(document.querySelectorAll('.navbtn'));
+  const sections = Array.from(document.querySelectorAll('main > section'));
+  buttons.forEach(btn => btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    sections.forEach(s => s.classList.add('hidden'));
+    document.getElementById(btn.dataset.tab).classList.remove('hidden');
+  }));
+
+  // Phase toggle (Hub ⇄ VaultWallet)
+  const phase1Btn = document.getElementById('phase1Btn');
+  const phase2Btn = document.getElementById('phase2Btn');
+  const hubTitle = document.getElementById('hubTitle');
+  const hubBody = document.getElementById('hubBody');
+  const hubNav = document.getElementById('hubNav');
+
+  function setPhase(p){
+    if(p===1){
+      hubTitle.textContent = 'Your Plan';
+      hubBody.innerHTML = '<div class="row small"><span>Starter · 100 GB</span><button class="btn small">Upgrade</button></div><div class="bar" style="margin-top:6px"><span style="width:72%"></span></div><div class="muted small" style="margin-top:6px">Receipts auto-save to your Vault.</div>';
+      hubNav.textContent = 'Hub';
+    } else {
+      hubTitle.textContent = 'VaultWallet Balance';
+      hubBody.innerHTML = '<div style="font-size:28px;font-weight:700">£128.40</div><div style="margin-top:8px"><button class="btn primary small">Add Funds</button> <button class="btn small">Buy Pass</button> <button class="btn small">Send Money</button></div><div class="muted small" style="margin-top:6px">All receipts filed under Payments.</div>';
+      hubNav.textContent = 'VaultWallet';
+    }
+  }
+  phase1Btn.addEventListener('click', ()=>setPhase(1));
+  phase2Btn.addEventListener('click', ()=>setPhase(2));
+  setPhase(1);
+
+  // Global Pool toggle (demo only)
+  const toggle = () => alert('In the full app, this toggles All Apps ↔ My VaultLinks.');
+  document.getElementById('toggleScopeBtn')?.addEventListener('click', toggle);
+</script>
+</body>
+</html>
